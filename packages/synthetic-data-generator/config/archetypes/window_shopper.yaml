@@ -1,0 +1,24 @@
+name: window_shopper
+employment_type: salaried
+description: >
+  Adequate, disciplined finances but repeatedly just browses loan offers and
+  never proceeds — low genuine intent regardless of repayment capacity. The
+  scoring engine (Phase 4) must down-rank this despite healthy income.
+income:
+  type: fixed_salary
+  monthly_amount: 60000
+  variance_pct: 0.02
+  pay_day: 5
+expenses:
+  essential_needs_pct: 0.20
+  compulsory_obligations_pct: 0.10
+  discretionary_pct: 0.20
+  savings_investment_pct: 0.30
+discipline:
+  day1_spend_velocity_pct: 0.10
+  bounce_event_probability: 0.0
+funnel:
+  max_stage: viewed_offer
+  product_views: 4
+  loan_product: home_loan
+  requested_amount: 5000000

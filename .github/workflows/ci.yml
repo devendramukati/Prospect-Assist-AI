@@ -38,3 +38,20 @@ jobs:
       - run: pip install -r requirements-dev.txt
       - run: ruff check app tests
       - run: pytest
+
+  synthetic-data-generator:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/synthetic-data-generator
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: packages/synthetic-data-generator/requirements-dev.txt
+      - run: pip install -r requirements-dev.txt
+      - run: ruff check generators cli.py tests
+      - run: pytest
+      - run: python cli.py --per-archetype 2 --output-dir /tmp/synthetic-smoke

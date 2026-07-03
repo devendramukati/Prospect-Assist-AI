@@ -1,0 +1,27 @@
+name: business_owner_upi_heavy
+employment_type: business_owner
+description: >
+  Turnover-driven business account with many small UPI credits per month
+  (retail trade) rather than a single salary credit — exercises the
+  turnover-times-industry-margin income path (Phase 3), which must report a
+  confidence band rather than a single hard income number.
+income:
+  type: business_turnover
+  monthly_turnover: 900000
+  turnover_variance_pct: 0.2
+  industry: retail_trade
+  margin_band: [0.08, 0.14]
+  txn_count_per_month: 60
+expenses:
+  essential_needs_pct: 0.10
+  compulsory_obligations_pct: 0.20
+  discretionary_pct: 0.10
+  savings_investment_pct: 0.10
+discipline:
+  day1_spend_velocity_pct: 0.20
+  bounce_event_probability: 0.02
+funnel:
+  max_stage: consented_statement_pull
+  product_views: 1
+  loan_product: auto_loan
+  requested_amount: 1500000

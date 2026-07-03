@@ -1,0 +1,23 @@
+name: salaried_disciplined
+employment_type: salaried
+description: >
+  Regular fixed monthly salary, disciplined spender, low day-1 spend
+  velocity, no bounced payments. Expected to be a strong, low-risk lead.
+income:
+  type: fixed_salary
+  monthly_amount: 75000
+  variance_pct: 0.02
+  pay_day: 1
+expenses:
+  essential_needs_pct: 0.25
+  compulsory_obligations_pct: 0.15
+  discretionary_pct: 0.15
+  savings_investment_pct: 0.30
+discipline:
+  day1_spend_velocity_pct: 0.15
+  bounce_event_probability: 0.0
+funnel:
+  max_stage: disbursed
+  product_views: 1
+  loan_product: personal_loan
+  requested_amount: 500000

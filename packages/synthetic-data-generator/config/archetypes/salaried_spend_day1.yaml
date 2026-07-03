@@ -1,0 +1,25 @@
+name: salaried_spend_day1
+employment_type: salaried
+description: >
+  Fixed decent salary but the bulk of it leaves the account within 24-48h of
+  credit — a financial-discipline red flag independent of income level. This
+  is the exact "spends it all on day 1" pattern the stakeholder flagged as a
+  delinquency-risk signal to catch even when capacity looks adequate.
+income:
+  type: fixed_salary
+  monthly_amount: 80000
+  variance_pct: 0.02
+  pay_day: 1
+expenses:
+  essential_needs_pct: 0.35
+  compulsory_obligations_pct: 0.15
+  discretionary_pct: 0.35
+  savings_investment_pct: 0.05
+discipline:
+  day1_spend_velocity_pct: 0.85
+  bounce_event_probability: 0.15
+funnel:
+  max_stage: submitted_documents
+  product_views: 1
+  loan_product: personal_loan
+  requested_amount: 300000

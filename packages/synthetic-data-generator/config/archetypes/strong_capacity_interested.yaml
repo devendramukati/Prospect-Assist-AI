@@ -1,0 +1,24 @@
+name: strong_capacity_interested
+employment_type: salaried
+description: >
+  High, stable income, disciplined spending, and follows the application
+  funnel through to disbursal — the "Serious" tier the scoring engine
+  (Phase 4) should surface first.
+income:
+  type: fixed_salary
+  monthly_amount: 150000
+  variance_pct: 0.01
+  pay_day: 1
+expenses:
+  essential_needs_pct: 0.15
+  compulsory_obligations_pct: 0.10
+  discretionary_pct: 0.15
+  savings_investment_pct: 0.40
+discipline:
+  day1_spend_velocity_pct: 0.05
+  bounce_event_probability: 0.0
+funnel:
+  max_stage: disbursed
+  product_views: 1
+  loan_product: auto_loan
+  requested_amount: 800000

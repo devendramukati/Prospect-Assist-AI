@@ -16,6 +16,9 @@ venv/
 .mypy_cache/
 .ruff_cache/
 
+# Generated synthetic data (regenerate on demand via cli.py)
+packages/synthetic-data-generator/data/
+
 # Env files
 .env
 .env.local

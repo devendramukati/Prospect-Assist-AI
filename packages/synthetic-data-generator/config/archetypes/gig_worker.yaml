@@ -1,0 +1,23 @@
+name: gig_worker
+employment_type: gig
+description: >
+  Irregular, multi-source monthly credits with high month-to-month variance
+  and no fixed pay day — exercises the rolling-window/volatility-discounted
+  income path (Phase 3) instead of the fixed-salary path.
+income:
+  type: irregular
+  monthly_mean: 40000
+  monthly_stddev_pct: 0.45
+expenses:
+  essential_needs_pct: 0.35
+  compulsory_obligations_pct: 0.05
+  discretionary_pct: 0.25
+  savings_investment_pct: 0.15
+discipline:
+  day1_spend_velocity_pct: 0.35
+  bounce_event_probability: 0.05
+funnel:
+  max_stage: submitted_documents
+  product_views: 2
+  loan_product: personal_loan
+  requested_amount: 200000

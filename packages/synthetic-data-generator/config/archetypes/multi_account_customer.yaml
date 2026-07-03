@@ -1,0 +1,27 @@
+name: multi_account_customer
+employment_type: salaried
+description: >
+  Income split across two bank accounts (one uploaded statement, one pulled
+  via a mock Account Aggregator consent) — exercises the multi-account
+  cross-check and consolidated capacity assessment (Phase 6).
+income:
+  type: fixed_salary
+  monthly_amount: 95000
+  variance_pct: 0.02
+  pay_day: 1
+expenses:
+  essential_needs_pct: 0.20
+  compulsory_obligations_pct: 0.15
+  discretionary_pct: 0.15
+  savings_investment_pct: 0.30
+discipline:
+  day1_spend_velocity_pct: 0.10
+  bounce_event_probability: 0.0
+funnel:
+  max_stage: consented_statement_pull
+  product_views: 1
+  loan_product: home_loan
+  requested_amount: 3000000
+accounts:
+  count: 2
+  income_split: [0.7, 0.3]
