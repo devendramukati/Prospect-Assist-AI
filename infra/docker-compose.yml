@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: prospect_assist
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  scoring-service:
+    build:
+      context: ../services/scoring-service
+    ports:
+      - "8000:8000"
+    environment:
+      CORS_ALLOW_ORIGINS: http://localhost:3000
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/prospect_assist
+    depends_on:
+      - postgres
+
+# The Next.js app (apps/web) is run natively via `npm run dev` for fast refresh
+# and is not containerized here; it talks to the scoring-service at
+# http://localhost:8000 (see apps/web/.env.example).
+
+volumes:
+  postgres_data:

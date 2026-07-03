@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: prospect-assist-scoring-service
+    runtime: docker
+    dockerfilePath: ./services/scoring-service/Dockerfile
+    dockerContext: ./services/scoring-service
+    plan: free
+    envVars:
+      - key: CORS_ALLOW_ORIGINS
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
