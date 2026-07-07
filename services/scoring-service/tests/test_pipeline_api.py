@@ -33,3 +33,29 @@ def test_categorized_transactions_endpoint_404_for_unknown_customer(synthetic_da
 
     response = client.get("/pipeline/does-not-exist/categorized-transactions")
     assert response.status_code == 404
+
+
+def test_capacity_assessment_endpoint(synthetic_data_dir, monkeypatch):
+    monkeypatch.setattr(settings, "synthetic_data_dir", str(synthetic_data_dir))
+
+    response = client.get("/pipeline/demo-001/capacity-assessment")
+    assert response.status_code == 200
+
+    data = response.json()
+    assert data["customer"]["external_ref"] == "demo-001"
+    assert data["income"]["method"] == "fixed_salary"
+    assert 74800 <= data["income"]["monthly_income_estimate"] <= 75500
+    assert data["expense_summary"]["compulsory_obligations"] == 11000.0
+    assert data["disposable_income"]["disposable_income"] > 0
+    assert set(data["affordability_by_product"].keys()) == {
+        "personal_loan", "auto_loan", "home_loan", "mortgage_loan",
+    }
+    assert data["discipline"]["bounce"]["bounce_count"] == 0
+    assert data["discipline"]["day1_spend_velocity"]["months_observed"] == 3
+
+
+def test_capacity_assessment_endpoint_404_for_unknown_customer(synthetic_data_dir, monkeypatch):
+    monkeypatch.setattr(settings, "synthetic_data_dir", str(synthetic_data_dir))
+
+    response = client.get("/pipeline/does-not-exist/capacity-assessment")
+    assert response.status_code == 404

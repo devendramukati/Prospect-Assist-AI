@@ -28,6 +28,12 @@ BUSINESS_CREDIT_DESCRIPTIONS = ["UPI/CR/CUSTOMER PAYMENT", "UPI/CR/RETAIL SALE",
 GIG_CREDIT_DESCRIPTIONS = ["UPI/CR/CLIENT PAYMENT", "NEFT-FREELANCE PAYOUT", "UPI/CR/PROJECT PAYOUT"]
 BOUNCE_DESCRIPTION = "ECS RET-INSUFF FUND CHARGES"
 
+# A credit only triggers "day-1 impulse spend" behaviour if it's individually
+# a meaningful chunk of that month's income — a single salary credit always
+# qualifies, but none of a business owner's ~60 small UPI credits should, so
+# turnover-style income patterns correctly produce no day-1 spend signal.
+SIGNIFICANT_CREDIT_SHARE = 0.15
+
 
 def _txn_id(rng: random.Random) -> str:
     return f"txn_{rng.getrandbits(48):012x}"
@@ -148,7 +154,10 @@ def generate_month_transactions(
     savings_pool = cfg.expenses.savings_investment_pct * total_income
 
     day1_target = min(cfg.discipline.day1_spend_velocity_pct * total_income, essential_pool + discretionary_pool)
-    significant_credits = sorted(credits, key=lambda c: c[1], reverse=True)[:3]
+    significance_floor = SIGNIFICANT_CREDIT_SHARE * total_income
+    significant_credits = [
+        c for c in sorted(credits, key=lambda c: c[1], reverse=True)[:3] if c[1] >= significance_floor
+    ]
     significant_total = sum(a for _, a, _ in significant_credits) or 1.0
 
     for txn_date, amount, _ in significant_credits:
@@ -169,8 +178,22 @@ def generate_month_transactions(
         essential_pool -= take_from_essential
         discretionary_pool = max(0.0, discretionary_pool - (allocated - take_from_essential))
 
+    # Keep ordinary essential/discretionary spend out of the 0-2 day window
+    # after a significant credit, so it can't be randomly mistaken for (or
+    # inflate) the day-1 impulse-spend signal measured downstream.
+    day1_excluded_days = {
+        d.day
+        for txn_date, _, _ in significant_credits
+        for d in (txn_date, txn_date + timedelta(days=1), txn_date + timedelta(days=2))
+        if d.day <= days_in_month
+    }
+
+    def _pick_spread_day() -> int:
+        candidates = [d for d in range(1, days_in_month + 1) if d not in day1_excluded_days]
+        return rng.choice(candidates) if candidates else rng.randint(1, days_in_month)
+
     for amount in _spread_amount(essential_pool, 2, 4, rng):
-        day = rng.randint(1, days_in_month)
+        day = _pick_spread_day()
         transactions.append(
             Transaction(
                 id=_txn_id(rng), account_id=account_id, txn_date=month_start.replace(day=day).isoformat(),
@@ -179,7 +202,7 @@ def generate_month_transactions(
         )
 
     for amount in _spread_amount(discretionary_pool, 1, 3, rng):
-        day = rng.randint(1, days_in_month)
+        day = _pick_spread_day()
         transactions.append(
             Transaction(
                 id=_txn_id(rng), account_id=account_id, txn_date=month_start.replace(day=day).isoformat(),

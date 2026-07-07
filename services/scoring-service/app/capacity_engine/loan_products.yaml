@@ -1,0 +1,27 @@
+# Indicative tenure/rate/FOIR-cap assumptions per loan product, used only to
+# turn a max-affordable-EMI figure into a max-affordable-principal figure.
+# Not authoritative pricing — a real deployment would source these from the
+# bank's actual product/pricing tables.
+personal_loan:
+  foir_cap: 0.50
+  tenure_months: 60
+  annual_rate_pct: 13.0
+  requires_collateral_input: false
+
+auto_loan:
+  foir_cap: 0.50
+  tenure_months: 84
+  annual_rate_pct: 10.5
+  requires_collateral_input: false
+
+home_loan:
+  foir_cap: 0.60
+  tenure_months: 240
+  annual_rate_pct: 9.0
+  requires_collateral_input: true
+
+mortgage_loan:
+  foir_cap: 0.60
+  tenure_months: 180
+  annual_rate_pct: 10.0
+  requires_collateral_input: true
