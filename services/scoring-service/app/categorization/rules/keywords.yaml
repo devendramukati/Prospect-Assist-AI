@@ -1,0 +1,192 @@
+# Rule-based categorization keywords. Rules are matched in order, first
+# match wins, so more specific patterns (e.g. "HOME LOAN EMI") must appear
+# before more generic ones (e.g. "EMI") that would otherwise shadow them.
+rules:
+  # --- income (credit only) ---
+  - pattern: "NEFT-SALARY"
+    category: income
+    subcategory: salary
+    direction: credit
+    confidence: 0.98
+
+  - pattern: "FREELANCE PAYOUT"
+    category: income
+    subcategory: gig_payout
+    direction: credit
+    confidence: 0.9
+  - pattern: "CLIENT PAYMENT"
+    category: income
+    subcategory: gig_payout
+    direction: credit
+    confidence: 0.85
+  - pattern: "PROJECT PAYOUT"
+    category: income
+    subcategory: gig_payout
+    direction: credit
+    confidence: 0.85
+
+  - pattern: "CUSTOMER PAYMENT"
+    category: income
+    subcategory: business_turnover
+    direction: credit
+    confidence: 0.85
+  - pattern: "RETAIL SALE"
+    category: income
+    subcategory: business_turnover
+    direction: credit
+    confidence: 0.85
+  - pattern: "WHOLESALE ORDER"
+    category: income
+    subcategory: business_turnover
+    direction: credit
+    confidence: 0.85
+
+  # --- essential needs ---
+  - pattern: "BIGBAZAAR"
+    category: essential_needs
+    subcategory: groceries
+    direction: debit
+    confidence: 0.95
+  - pattern: "RELIANCE FRESH"
+    category: essential_needs
+    subcategory: groceries
+    direction: debit
+    confidence: 0.95
+  - pattern: "KIRANA"
+    category: essential_needs
+    subcategory: groceries
+    direction: debit
+    confidence: 0.9
+  - pattern: "BBPS-ELECTRICITY"
+    category: essential_needs
+    subcategory: utilities
+    direction: debit
+    confidence: 0.95
+  - pattern: "BBPS-GAS"
+    category: essential_needs
+    subcategory: utilities
+    direction: debit
+    confidence: 0.95
+  - pattern: "PHARMEASY"
+    category: essential_needs
+    subcategory: medical
+    direction: debit
+    confidence: 0.9
+
+  # --- compulsory obligations (specific before generic "EMI") ---
+  - pattern: "HOME LOAN EMI"
+    category: compulsory_obligation
+    subcategory: home_loan_emi
+    direction: debit
+    confidence: 0.97
+  - pattern: "PERSONAL LOAN EMI"
+    category: compulsory_obligation
+    subcategory: personal_loan_emi
+    direction: debit
+    confidence: 0.97
+  - pattern: "CAR LOAN EMI"
+    category: compulsory_obligation
+    subcategory: auto_loan_emi
+    direction: debit
+    confidence: 0.97
+  - pattern: "RENT TRANSFER"
+    category: compulsory_obligation
+    subcategory: rent
+    direction: debit
+    confidence: 0.95
+  - pattern: "EMI"
+    category: compulsory_obligation
+    subcategory: other_emi
+    direction: debit
+    confidence: 0.7
+
+  # --- bank charges / bounced payments ---
+  - pattern: "ECS RET"
+    category: bank_charge
+    subcategory: bounced_payment
+    direction: debit
+    confidence: 0.95
+  - pattern: "INSUFF FUND"
+    category: bank_charge
+    subcategory: bounced_payment
+    direction: debit
+    confidence: 0.9
+
+  # --- savings / investment ---
+  - pattern: "GROWW MUTUAL FUND"
+    category: savings_investment
+    subcategory: mutual_fund
+    direction: debit
+    confidence: 0.95
+  - pattern: "FD ACCOUNT"
+    category: savings_investment
+    subcategory: fixed_deposit
+    direction: debit
+    confidence: 0.95
+  - pattern: "SIP-"
+    category: savings_investment
+    subcategory: sip
+    direction: debit
+    confidence: 0.95
+  - pattern: "RD INSTALLMENT"
+    category: savings_investment
+    subcategory: recurring_deposit
+    direction: debit
+    confidence: 0.95
+
+  # --- discretionary ---
+  - pattern: "ZOMATO"
+    category: discretionary
+    subcategory: food_delivery
+    direction: debit
+    confidence: 0.9
+  - pattern: "SWIGGY"
+    category: discretionary
+    subcategory: food_delivery
+    direction: debit
+    confidence: 0.9
+  - pattern: "AMAZON"
+    category: discretionary
+    subcategory: online_shopping
+    direction: debit
+    confidence: 0.85
+  - pattern: "FLIPKART"
+    category: discretionary
+    subcategory: online_shopping
+    direction: debit
+    confidence: 0.85
+  - pattern: "ONLINE SHOPPING"
+    category: discretionary
+    subcategory: online_shopping
+    direction: debit
+    confidence: 0.85
+  - pattern: "MYNTRA"
+    category: discretionary
+    subcategory: fashion
+    direction: debit
+    confidence: 0.85
+  - pattern: "PVR CINEMAS"
+    category: discretionary
+    subcategory: entertainment
+    direction: debit
+    confidence: 0.9
+  - pattern: "ELECTRONICS STORE"
+    category: discretionary
+    subcategory: electronics
+    direction: debit
+    confidence: 0.85
+  - pattern: "TRAVEL BOOKING"
+    category: discretionary
+    subcategory: travel
+    direction: debit
+    confidence: 0.85
+  - pattern: "JEWELLERY STORE"
+    category: discretionary
+    subcategory: jewellery
+    direction: debit
+    confidence: 0.85
+  - pattern: "ATM CASH WITHDRAWAL"
+    category: discretionary
+    subcategory: cash_withdrawal
+    direction: debit
+    confidence: 0.8
