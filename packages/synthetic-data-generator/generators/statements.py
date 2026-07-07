@@ -3,7 +3,7 @@ from datetime import date
 
 from .archetypes import ArchetypeConfig
 from .models import BankAccount, Statement
-from .transactions import generate_month_transactions, month_starts
+from .transactions import COMPULSORY_DESCRIPTIONS, SAVINGS_DESCRIPTIONS, generate_month_transactions, month_starts
 
 BANK_NAMES = ["HDFC Bank", "ICICI Bank", "State Bank of India", "Axis Bank", "Kotak Mahindra Bank"]
 
@@ -38,9 +38,16 @@ def build_accounts_and_statements(
             )
         )
 
+        compulsory_description = rng.choice(COMPULSORY_DESCRIPTIONS)
+        savings_description = rng.choice(SAVINGS_DESCRIPTIONS)
+
         all_txns = []
         for m_start in starts:
-            all_txns.extend(generate_month_transactions(cfg, account_id, m_start, splits[i], rng))
+            all_txns.extend(
+                generate_month_transactions(
+                    cfg, account_id, m_start, splits[i], rng, compulsory_description, savings_description
+                )
+            )
 
         statements.append(
             Statement(

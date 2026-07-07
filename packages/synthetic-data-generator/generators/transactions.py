@@ -110,6 +110,8 @@ def generate_month_transactions(
     month_start: date,
     income_scale: float,
     rng: random.Random,
+    compulsory_description: str,
+    savings_description: str,
 ) -> list[Transaction]:
     """Generate one month of transactions for a single account.
 
@@ -117,6 +119,12 @@ def generate_month_transactions(
     that lands within 0-2 days of the largest credits that month, rather than
     an amount on top of the configured budget — so a "spends it all" archetype
     is expressed by shifting *when* the money goes, not by exceeding income.
+
+    compulsory_description/savings_description are chosen once per account
+    (by the caller) and passed in on every call so a customer's EMI/rent and
+    SIP/FD narration stays consistent month to month, as it would for a real
+    recurring obligation — required for the recurring-transaction detector
+    (Phase 2) to be able to match them by description across months.
     """
     days_in_month = _days_in_month(month_start)
     transactions: list[Transaction] = []
@@ -185,7 +193,7 @@ def generate_month_transactions(
             Transaction(
                 id=_txn_id(rng), account_id=account_id,
                 txn_date=month_start.replace(day=obligation_day).isoformat(),
-                description_raw=rng.choice(COMPULSORY_DESCRIPTIONS), amount=round(compulsory_pool, 2),
+                description_raw=compulsory_description, amount=round(compulsory_pool, 2),
                 direction="debit", channel="ACH",
             )
         )
@@ -205,7 +213,7 @@ def generate_month_transactions(
             Transaction(
                 id=_txn_id(rng), account_id=account_id,
                 txn_date=month_start.replace(day=savings_day).isoformat(),
-                description_raw=rng.choice(SAVINGS_DESCRIPTIONS), amount=round(savings_pool, 2),
+                description_raw=savings_description, amount=round(savings_pool, 2),
                 direction="debit", channel="UPI",
             )
         )
