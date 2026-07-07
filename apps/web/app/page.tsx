@@ -6,17 +6,24 @@ export default async function HomePage() {
   return (
     <main className="mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center gap-6 p-8 text-center">
       <h1 className="text-3xl font-semibold">Prospect-Assist-AI</h1>
-      <p className="text-slate-600">
-        Behavioural analytics for retail lending lead qualification &mdash; deployment skeleton.
+      <p className="text-[var(--viz-text-secondary)]">
+        Behavioural analytics for retail lending lead qualification &mdash; see the{" "}
+        <a href="/dashboard" className="underline">
+          dashboard
+        </a>
+        .
       </p>
       <div className="grid w-full grid-cols-2 gap-4">
-        <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-          <p className="text-sm text-slate-500">Frontend</p>
-          <p className="mt-1 font-medium text-emerald-600">ok</p>
+        <div className="rounded-lg border border-[var(--viz-border)] bg-[var(--viz-surface-1)] p-4 shadow-sm">
+          <p className="text-sm text-[var(--viz-text-muted)]">Frontend</p>
+          <p className="mt-1 font-medium text-[var(--viz-status-good)]">ok</p>
         </div>
-        <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-          <p className="text-sm text-slate-500">Scoring service</p>
-          <p className={`mt-1 font-medium ${backendHealth ? "text-emerald-600" : "text-red-600"}`}>
+        <div className="rounded-lg border border-[var(--viz-border)] bg-[var(--viz-surface-1)] p-4 shadow-sm">
+          <p className="text-sm text-[var(--viz-text-muted)]">Scoring service</p>
+          <p
+            className="mt-1 font-medium"
+            style={{ color: backendHealth ? "var(--viz-status-good)" : "var(--viz-status-critical)" }}
+          >
             {backendHealth ? backendHealth.status : "unreachable"}
           </p>
         </div>
