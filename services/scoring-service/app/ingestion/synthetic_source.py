@@ -19,6 +19,17 @@ class SyntheticFileIngestionSource(IngestionSource):
     def __init__(self, data_dir: str | Path):
         self.data_dir = Path(data_dir)
 
+    def list_external_refs(self) -> list[str]:
+        """Lists every customer this synthetic source can serve. Not part of
+        the IngestionSource interface (a real PDF upload or AA pull is
+        inherently per-customer) — used only by the /leads listing endpoint
+        for this MVP demo; a real deployment would query the DB instead.
+        """
+        customers_dir = self.data_dir / "customers"
+        if not customers_dir.is_dir():
+            return []
+        return sorted(p.name for p in customers_dir.iterdir() if p.is_dir())
+
     def load(self, external_ref: str) -> CustomerBundle:
         customer_dir = self.data_dir / "customers" / external_ref
         if not customer_dir.is_dir():

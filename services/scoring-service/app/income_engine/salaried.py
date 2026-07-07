@@ -1,3 +1,4 @@
+from collections import defaultdict
 from statistics import mean, pstdev
 
 from app.models.domain import Transaction
@@ -14,6 +15,12 @@ def estimate_salaried_income(transactions: list[Transaction]) -> dict:
     month-to-month variance. Prefers transactions the recurring-transaction
     detector (Phase 2) already flagged; falls back to the salary subcategory
     alone if recurrence wasn't detected (e.g. too few months observed).
+
+    Salary credits are summed per month before computing the point estimate
+    and stability score — required for a multi-account customer whose salary
+    is split across two accounts (two separate, individually-stable credit
+    streams), which would otherwise look highly volatile if each account's
+    share were compared directly against the other's.
     """
     salary_txns = [t for t in transactions if t.category == "income" and t.is_recurring]
     if not salary_txns:
@@ -22,7 +29,11 @@ def estimate_salaried_income(transactions: list[Transaction]) -> dict:
     if not salary_txns:
         return {"monthly_income_estimate": 0.0, "income_stability_score": 0.0, "method": "fixed_salary", "sample_size": 0}
 
-    amounts = sorted(t.amount for t in salary_txns)
+    monthly_totals: dict[str, float] = defaultdict(float)
+    for t in salary_txns:
+        monthly_totals[t.txn_date[:7]] += t.amount
+
+    amounts = sorted(monthly_totals.values())
     mid = len(amounts) // 2
     median_amount = amounts[mid] if len(amounts) % 2 == 1 else (amounts[mid - 1] + amounts[mid]) / 2
 
@@ -34,5 +45,5 @@ def estimate_salaried_income(transactions: list[Transaction]) -> dict:
         "monthly_income_estimate": round(median_amount, 2),
         "income_stability_score": round(stability_score, 2),
         "method": "fixed_salary",
-        "sample_size": len(salary_txns),
+        "sample_size": len(monthly_totals),
     }

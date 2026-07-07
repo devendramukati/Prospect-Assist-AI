@@ -56,14 +56,13 @@ def get_categorized_transactions(external_ref: str) -> dict:
     }
 
 
-@router.get("/{external_ref}/capacity-assessment")
-def get_capacity_assessment(external_ref: str) -> dict:
-    try:
-        bundle, transactions = _load_and_categorize_flat(external_ref)
-    except FileNotFoundError as exc:
-        raise HTTPException(status_code=404, detail=str(exc)) from exc
-
-    income = estimate_income(bundle.customer.employment_type, transactions)
+def build_capacity_assessment(customer_employment_type: str, transactions: list[Transaction]) -> dict:
+    """Runs the full Phase 3 income/capacity/discipline pipeline for one
+    customer's flattened transactions. Shared by the /capacity-assessment
+    endpoint and the /leads scoring endpoints so both compute this from a
+    single source of truth.
+    """
+    income = estimate_income(customer_employment_type, transactions)
     expense_summary = compute_expense_summary(transactions)
 
     # For a business/turnover-based income estimate, existing obligations and
@@ -82,10 +81,10 @@ def get_capacity_assessment(external_ref: str) -> dict:
     affordability = compute_affordability(capacity_base_income, expense_summary["compulsory_obligations"])
 
     return {
-        "customer": bundle.customer.model_dump(),
         "income": income.model_dump(),
         "expense_summary": expense_summary,
         "capacity_basis": capacity_basis,
+        "capacity_base_income": capacity_base_income,
         "disposable_income": disposable,
         "affordability_by_product": affordability,
         "discipline": {
@@ -94,3 +93,14 @@ def get_capacity_assessment(external_ref: str) -> dict:
             "balance": compute_running_balance_flags(transactions),
         },
     }
+
+
+@router.get("/{external_ref}/capacity-assessment")
+def get_capacity_assessment(external_ref: str) -> dict:
+    try:
+        bundle, transactions = _load_and_categorize_flat(external_ref)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    assessment = build_capacity_assessment(bundle.customer.employment_type, transactions)
+    return {"customer": bundle.customer.model_dump(), **assessment}

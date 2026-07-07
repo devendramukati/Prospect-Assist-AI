@@ -1,0 +1,6 @@
+# Composite score = intent*w_intent + capacity*w_capacity + discipline*w_discipline
+# Versioned so a future weight change doesn't silently reinterpret old scores
+# — lead_scores.scoring_version records which file produced a given score.
+intent: 0.35
+capacity: 0.40
+discipline: 0.25
