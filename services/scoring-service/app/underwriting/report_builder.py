@@ -36,6 +36,8 @@ def build_underwriting_report(customer: dict, assessment: dict, score: dict) -> 
         "customer": {
             "external_ref": customer["external_ref"],
             "employment_type": customer["employment_type"],
+            "full_name": customer.get("kyc", {}).get("full_name"),
+            "account_count": customer.get("account_count"),
         },
         "income_summary": income_summary,
         "affordability": {

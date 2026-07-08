@@ -4,6 +4,7 @@ import { Meter } from "@/components/Meter";
 import { TierBadge } from "@/components/TierBadge";
 import { getLeadExplain, getUnderwritingReportUrl } from "@/lib/api-client";
 
+import { LinkAccountModal } from "./components/LinkAccountModal";
 import { ScoreFactorChart } from "./components/ScoreFactorChart";
 
 const METHOD_LABEL: Record<string, string> = {
@@ -39,11 +40,28 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ ext
     <main className="mx-auto max-w-3xl p-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold">{customer.external_ref}</h1>
-          <p className="text-sm text-[var(--viz-text-secondary)]">{customer.employment_type}</p>
+          <h1 className="text-2xl font-semibold">{customer.kyc?.full_name ?? customer.external_ref}</h1>
+          <p className="text-sm text-[var(--viz-text-secondary)]">
+            {customer.external_ref} &middot; {customer.employment_type}
+            {customer.kyc ? (
+              <>
+                {" "}
+                &middot; PAN {customer.kyc.pan_masked}
+              </>
+            ) : null}
+          </p>
         </div>
         <TierBadge tier={score.tier} />
       </div>
+
+      <section className="mt-6 rounded-lg border border-[var(--viz-border)] bg-[var(--viz-surface-1)] p-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-sm font-medium text-[var(--viz-text-secondary)]">
+            Accounts ({customer.account_count ?? 1})
+          </h2>
+          <LinkAccountModal externalRef={externalRef} />
+        </div>
+      </section>
 
       <section className="mt-6 rounded-lg border border-[var(--viz-border)] bg-[var(--viz-surface-1)] p-4">
         <h2 className="text-sm font-medium text-[var(--viz-text-secondary)]">Income</h2>

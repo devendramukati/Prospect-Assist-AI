@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 
 from app.capacity_engine.affordability import compute_affordability
 from app.capacity_engine.foir_calculator import compute_disposable_income, compute_expense_summary
@@ -10,12 +10,15 @@ from app.discipline_engine.day1_velocity import compute_day1_spend_velocity
 from app.discipline_engine.overdraft_detector import compute_running_balance_flags
 from app.income_engine.router import estimate_income
 from app.ingestion.synthetic_source import SyntheticFileIngestionSource
+from app.integrations.account_aggregator.base import AAClient
+from app.integrations.account_aggregator.consent_models import ConsentStatus
+from app.integrations.account_aggregator.mock_client import get_aa_client
 from app.models.domain import CustomerBundle, Transaction
 
 router = APIRouter(prefix="/pipeline", tags=["pipeline"])
 
 
-def _load_and_categorize_by_account(external_ref: str) -> tuple[CustomerBundle, list[dict]]:
+def _load_and_categorize_by_account(external_ref: str, aa_client: AAClient) -> tuple[CustomerBundle, list[dict]]:
     source = SyntheticFileIngestionSource(settings.synthetic_data_dir)
     bundle = source.load(external_ref)
 
@@ -25,25 +28,37 @@ def _load_and_categorize_by_account(external_ref: str) -> tuple[CustomerBundle, 
         categorized = detect_recurring(categorized)
         statements_out.append({"account_id": statement.account_id, "transactions": categorized})
 
+    # Any Account Aggregator consent that's been approved and fetched adds
+    # another account/statement into the same customer's picture — this is
+    # the mechanism behind the "consolidated capacity assessment" the AA
+    # linking flow (Phase 6) promises, without any DB required for the MVP.
+    for consent in aa_client.list_consents_for_customer(external_ref):
+        if consent.status == ConsentStatus.APPROVED and consent.data_fetched:
+            linked_account, linked_statement = aa_client.get_fetched_data(consent.id)
+            bundle.accounts.append(linked_account)
+            categorized = categorize_transactions(linked_statement.transactions)
+            categorized = detect_recurring(categorized)
+            statements_out.append({"account_id": linked_account.id, "transactions": categorized})
+
     return bundle, statements_out
 
 
-def _load_and_categorize_flat(external_ref: str) -> tuple[CustomerBundle, list[Transaction]]:
+def _load_and_categorize_flat(external_ref: str, aa_client: AAClient) -> tuple[CustomerBundle, list[Transaction]]:
     """Flattens categorized transactions across all of a customer's
     accounts, since repayment capacity should reflect the customer's whole
     cash flow regardless of which account a transaction landed in — this is
     also what makes the multi-account archetype's consolidated assessment
     work without any extra wiring.
     """
-    bundle, statements_out = _load_and_categorize_by_account(external_ref)
+    bundle, statements_out = _load_and_categorize_by_account(external_ref, aa_client)
     all_transactions = [t for statement in statements_out for t in statement["transactions"]]
     return bundle, all_transactions
 
 
 @router.get("/{external_ref}/categorized-transactions")
-def get_categorized_transactions(external_ref: str) -> dict:
+def get_categorized_transactions(external_ref: str, aa_client: AAClient = Depends(get_aa_client)) -> dict:
     try:
-        bundle, statements_out = _load_and_categorize_by_account(external_ref)
+        bundle, statements_out = _load_and_categorize_by_account(external_ref, aa_client)
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
@@ -96,9 +111,9 @@ def build_capacity_assessment(customer_employment_type: str, transactions: list[
 
 
 @router.get("/{external_ref}/capacity-assessment")
-def get_capacity_assessment(external_ref: str) -> dict:
+def get_capacity_assessment(external_ref: str, aa_client: AAClient = Depends(get_aa_client)) -> dict:
     try:
-        bundle, transactions = _load_and_categorize_flat(external_ref)
+        bundle, transactions = _load_and_categorize_flat(external_ref, aa_client)
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 

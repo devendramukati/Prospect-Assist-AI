@@ -16,11 +16,44 @@ export interface LeadsResponse {
   leads: LeadSummary[];
 }
 
+export interface KYCProfile {
+  full_name: string;
+  pan_masked: string;
+  phone_masked: string;
+  date_of_birth: string;
+}
+
 export interface Customer {
   id: string;
   external_ref: string;
   employment_type: string;
   created_at: string;
+  kyc?: KYCProfile;
+  account_count?: number;
+}
+
+export type ConsentStatus = "pending" | "approved" | "denied" | "expired" | "revoked";
+
+export interface FIPInfo {
+  fip_id: string;
+  name: string;
+}
+
+export interface ConsentRequest {
+  id: string;
+  customer_id: string;
+  external_ref: string;
+  aa_handle: string;
+  fip_id: string;
+  fip_name: string;
+  purpose: string;
+  status: ConsentStatus;
+  data_range_from: string;
+  data_range_to: string;
+  requested_at: string;
+  approved_at: string | null;
+  expires_at: string;
+  data_fetched: boolean;
 }
 
 export interface IncomeEstimate {
