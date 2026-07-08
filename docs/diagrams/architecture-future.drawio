@@ -1,117 +1,175 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Future Architecture (AWS)" id="future-arch">
-    <mxGraphModel dx="3285" dy="2165" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1300" math="0" shadow="0">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1050" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" parent="1" style="text;html=1;fontSize=22;fontStyle=1;align=left;" value="Prospect-Assist-AI — Stage 2 (AWS) Target Architecture" vertex="1">
-          <mxGeometry height="30" width="800" x="40" y="20" as="geometry" />
+
+        <!-- White background container -->
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CCCCCC;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="30" y="90" width="1840" height="900" as="geometry" />
         </mxCell>
-        <mxCell id="subtitle" parent="1" style="text;html=1;fontSize=12;fontStyle=2;align=left;fontColor=#666666;" value="Nothing below is provisioned yet — same interfaces (IngestionSource / AAClient / CoreBankingClient) as the MVP, only the concrete implementation swaps. See docs/aws-migration-map.md." vertex="1">
-          <mxGeometry height="20" width="1000" x="40" y="50" as="geometry" />
+
+        <!-- Title -->
+        <mxCell id="title" value="Prospect-Assist-AI — Stage 2 (AWS) Target Architecture" style="text;html=1;fontSize=22;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="800" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="browser" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="Browser&#xa;(Loan Officer / Demo Viewer)" vertex="1">
-          <mxGeometry height="60" width="220" x="700" y="90" as="geometry" />
+        <mxCell id="subtitle" value="Nothing below is provisioned yet — same interfaces (IngestionSource / AAClient / CoreBankingClient) as the MVP, only the concrete implementation swaps. AWS icons are the standard draw.io AWS4 shape library. See docs/aws-migration-map.md." style="text;html=1;fontSize=12;fontStyle=2;align=left;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="54" width="1300" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="frontend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Frontend&#xa;Vercel (unchanged) OR&#xa;Amplify Hosting / S3 + CloudFront" vertex="1">
-          <mxGeometry height="80" width="320" x="80" y="200" as="geometry" />
+
+        <!-- Browser / user (AWS4 "users" general icon) -->
+        <mxCell id="browser" value="Browser (Loan Officer / Demo Viewer)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.users;" vertex="1" parent="1">
+          <mxGeometry x="850" y="120" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="cognito" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Amazon Cognito&#xa;Auth: loan_officer / admin roles&#xa;(replaces Supabase Auth claims)" vertex="1">
-          <mxGeometry height="80" width="260" x="480" y="200" as="geometry" />
+
+        <!-- Frontend (kept generic — Vercel or AWS-native, not one single AWS service) -->
+        <mxCell id="frontend" value="Frontend&#10;Vercel (unchanged) OR&#10;Amplify Hosting" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="90" y="240" width="300" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="apigw" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="API Gateway + ALB" vertex="1">
-          <mxGeometry height="60" width="260" x="820" y="200" as="geometry" />
+
+        <!-- CloudFront (AWS4 icon) -->
+        <mxCell id="cloudfront" value="CloudFront&#10;(if S3+CloudFront hosting chosen)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudfront;" vertex="1" parent="1">
+          <mxGeometry x="440" y="240" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="ecsBox" parent="1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" value="ECS Fargate (or EKS)&#xa;— same FastAPI Docker image as the MVP —" vertex="1">
-          <mxGeometry height="280" width="500" x="760" y="320" as="geometry" />
+
+        <!-- Cognito (AWS4 icon) -->
+        <mxCell id="cognito" value="Cognito&#10;loan_officer / admin auth roles" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cognito;" vertex="1" parent="1">
+          <mxGeometry x="580" y="240" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="ecsEngines" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="categorization / income / capacity /&#xa;discipline / scoring_engine (unchanged)" vertex="1">
-          <mxGeometry height="55" width="440" x="790" y="360" as="geometry" />
+
+        <!-- API Gateway (AWS4 icon) -->
+        <mxCell id="apigw" value="API Gateway + ALB" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" vertex="1" parent="1">
+          <mxGeometry x="720" y="240" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="ecsIngestion" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="ingestion/ — PdfUploadIngestionSource&#xa;(same IngestionSource interface)" vertex="1">
-          <mxGeometry height="55" width="210" x="790" y="430" as="geometry" />
+
+        <!-- Fargate badge icon (overlaps corner of the ECS container below) -->
+        <mxCell id="fargateIcon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;" vertex="1" parent="1">
+          <mxGeometry x="620" y="350" width="60" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ecsAA" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="integrations/account_aggregator —&#xa;real AAClient implementation" vertex="1">
-          <mxGeometry height="55" width="210" x="1020" y="430" as="geometry" />
+
+        <!-- ECS Fargate container -->
+        <mxCell id="ecsBox" value="ECS Fargate (or EKS) — same FastAPI Docker image as the MVP" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;spacingLeft=50;" vertex="1" parent="1">
+          <mxGeometry x="650" y="380" width="600" height="330" as="geometry" />
         </mxCell>
-        <mxCell id="ecsCoreBank" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="integrations/core_banking —&#xa;real CoreBankingClient implementation" vertex="1">
-          <mxGeometry height="55" width="440" x="790" y="500" as="geometry" />
+        <mxCell id="ecsEngines" value="categorization / income / capacity /&#10;discipline / scoring_engine (unchanged)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="680" y="430" width="540" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="rds" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="RDS / Aurora Postgres&#xa;customers, customer_pii, consents,&#xa;audit_log — real persistence + RLS" vertex="1">
-          <mxGeometry height="90" width="280" x="1340" y="200" as="geometry" />
+        <mxCell id="ecsIngestion" value="ingestion/ — PdfUploadIngestionSource&#10;(same IngestionSource interface)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="680" y="500" width="260" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="S3&#xa;statement/object storage" vertex="1">
-          <mxGeometry height="70" width="280" x="1340" y="320" as="geometry" />
+        <mxCell id="ecsAA" value="integrations/account_aggregator —&#10;real AAClient implementation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="960" y="500" width="260" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="secrets" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Secrets Manager" vertex="1">
-          <mxGeometry height="60" width="280" x="1340" y="420" as="geometry" />
+        <mxCell id="ecsCoreBank" value="integrations/core_banking —&#10;real CoreBankingClient implementation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="680" y="570" width="540" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="cloudwatch" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="CloudWatch Logs&#xa;audit_log event sink (same JSON shape&#xa;as app/core/audit.py today)" vertex="1">
-          <mxGeometry height="80" width="280" x="1340" y="510" as="geometry" />
+
+        <!-- RDS (AWS4 icon) -->
+        <mxCell id="rds" value="RDS / Aurora Postgres&#10;customers, customer_pii, consents, audit_log" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#3B48CC;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.rds;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="240" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="textract" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Amazon Textract&#xa;bank-statement PDF OCR" vertex="1">
-          <mxGeometry height="70" width="240" x="480" y="430" as="geometry" />
+
+        <!-- S3 (AWS4 icon) -->
+        <mxCell id="s3" value="S3&#10;statement/object storage" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="240" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="realAA" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Licensed Account Aggregator&#xa;(Sahamati network: Finvu / OneMoney /&#xa;CAMSFinserv / Anumati)" vertex="1">
-          <mxGeometry height="80" width="240" x="480" y="520" as="geometry" />
+
+        <!-- Secrets Manager (AWS4 icon) -->
+        <mxCell id="secrets" value="Secrets Manager" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.secrets_manager;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="400" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="realCoreBank" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Core Banking System&#xa;(Finacle / Flexcube / BaNCS)&#xa;via PrivateLink" vertex="1">
-          <mxGeometry height="80" width="240" x="480" y="620" as="geometry" />
+
+        <!-- CloudWatch (AWS4 icon) -->
+        <mxCell id="cloudwatch" value="CloudWatch Logs&#10;audit_log event sink" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="400" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="sagemaker" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;" value="SageMaker&#xa;XGBoost/LightGBM + SHAP scorer&#xa;— shadow-mode only, after real labeled&#xa;outcomes exist; rule engine stays primary" vertex="1">
-          <mxGeometry height="100" width="280" x="1030" y="650" as="geometry" />
+
+        <!-- Textract (AWS4 icon) -->
+        <mxCell id="textract" value="Amazon Textract&#10;bank-statement PDF OCR" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#01A88D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.textract;" vertex="1" parent="1">
+          <mxGeometry x="440" y="430" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="cicd" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="GitHub Actions (unchanged) or&#xa;CodePipeline / CodeBuild" vertex="1">
-          <mxGeometry height="70" width="300" x="80" y="340" as="geometry" />
+
+        <!-- Real AA network (external, not AWS) -->
+        <mxCell id="realAA" value="Licensed Account Aggregator&#10;(Sahamati network: Finvu / OneMoney /&#10;CAMSFinserv / Anumati)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="390" y="560" width="230" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="sequence" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#f5f5f5;strokeColor=#666666;" value="Suggested sequencing:&#xa;1. RDS + apply existing migrations as-is (plain Postgres)&#xa;2. S3 for storage; ingestion adapter swap only&#xa;3. Cognito + verify RLS policies against real JWT claims&#xa;4. Swap MockAAClient / MockCoreBankingClient one at a time&#xa;5. SageMaker only after real labeled outcomes exist" vertex="1">
-          <mxGeometry height="140" width="340" x="80" y="460" as="geometry" />
+
+        <!-- Real core banking (external, not AWS) -->
+        <mxCell id="realCoreBank" value="Core Banking System&#10;(Finacle / Flexcube / BaNCS)&#10;via PrivateLink" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="390" y="670" width="230" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="e1" edge="1" parent="1" source="browser" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="frontend">
+
+        <!-- SageMaker dashed wrapper (future/shadow-mode) -->
+        <mxCell id="sagemakerWrap" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="560" width="290" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="sagemaker" value="SageMaker — XGBoost/LightGBM + SHAP&#10;shadow-mode only, after real labeled&#10;outcomes exist; rule engine stays primary" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#01A88D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sagemaker;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="580" width="70" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- CI/CD -->
+        <mxCell id="cicd" value="GitHub Actions (unchanged) or&#10;CodePipeline / CodeBuild" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="90" y="800" width="300" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Migration sequence note -->
+        <mxCell id="sequence" value="Suggested sequencing:&#10;1. RDS + apply existing migrations as-is (plain Postgres)&#10;2. S3 for storage; ingestion adapter swap only&#10;3. Cognito + verify RLS policies against real JWT claims&#10;4. Swap MockAAClient / MockCoreBankingClient one at a time&#10;5. SageMaker only after real labeled outcomes exist" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="420" y="800" width="380" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="legend" value="Pink/red = security &amp; management · Blue = database · Green = storage/compute · Purple = ML &amp; networking · Grey dashed = external/not-yet-wired · Red box = third-party (non-AWS)" style="text;html=1;fontSize=11;fontStyle=2;align=left;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="800" width="500" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="browser" target="frontend">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e2" edge="1" parent="1" source="frontend" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="apigw">
+        <mxCell id="ecf" value="or" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" edge="1" parent="1" source="frontend" target="cloudfront">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e3" edge="1" parent="1" source="cognito" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="apigw" value="auth">
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="frontend" target="apigw">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e4" edge="1" parent="1" source="apigw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="ecsBox">
+        <mxCell id="e3" value="auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="cognito" target="apigw">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e5" edge="1" parent="1" source="ecsBox" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="rds" value="customers, consents,&#xa;audit_log">
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="apigw" target="ecsBox">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e6" edge="1" parent="1" source="ecsBox" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="s3" value="statement files">
+        <mxCell id="e5" value="customers, consents,&#10;audit_log" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="ecsBox" target="rds">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e7" edge="1" parent="1" source="ecsBox" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="secrets">
+        <mxCell id="e6" value="statement files" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="ecsBox" target="s3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e8" edge="1" parent="1" source="ecsBox" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="cloudwatch" value="audit events">
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="ecsBox" target="secrets">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e9" edge="1" parent="1" source="ecsIngestion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="textract">
+        <mxCell id="e8" value="audit events" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="ecsBox" target="cloudwatch">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e10" edge="1" parent="1" source="ecsAA" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="realAA" value="consent-based FI data pull">
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="ecsIngestion" target="textract">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e11" edge="1" parent="1" source="ecsCoreBank" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="realCoreBank" value="KYC / account data">
+        <mxCell id="e10" value="consent-based FI data pull" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="ecsAA" target="realAA">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e12" edge="1" parent="1" source="ecsEngines" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#666666;" target="sagemaker" value="shadow-score&#xa;(future)">
+        <mxCell id="e11" value="KYC / account data" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="ecsCoreBank" target="realCoreBank">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e13" edge="1" parent="1" source="cicd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#9673a6;" target="frontend" value="deploy">
+        <mxCell id="e12" value="shadow-score (future)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#666666;" edge="1" parent="1" source="ecsEngines" target="sagemaker">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e14" edge="1" parent="1" source="cicd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#9673a6;" target="ecsBox" value="deploy">
+        <mxCell id="e13" value="deploy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#9673a6;" edge="1" parent="1" source="cicd" target="frontend">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="SIyRHY9x12mLENbwmQU5-1" parent="1" style="swimlane;startSize=0;fillStyle=auto;fillColor=light-dark(#FFFFFF,#FFFFFF);shadow=0;rounded=0;glass=0;opacity=0;" value="&#xa;" vertex="1">
-          <mxGeometry height="820" width="1880" x="-30" y="-20" as="geometry" />
+        <mxCell id="e14" value="deploy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#9673a6;" edge="1" parent="1" source="cicd" target="ecsBox">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
+
       </root>
     </mxGraphModel>
   </diagram>
