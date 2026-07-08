@@ -1,168 +1,200 @@
 <mxfile host="app.diagrams.net">
-  <diagram name="Current Architecture" id="current-arch">
-    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1300" math="0" shadow="0">
+  <diagram name="Current Architecture" id="jy0Ey1Ed7OV3YKlb3xtr">
+    <mxGraphModel dx="3157" dy="2122" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-
-        <!-- White background container -->
-        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CCCCCC;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="30" y="90" width="1640" height="770" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#FFFFFF;strokeColor=#CCCCCC;fontFamily=Helvetica;" value="" vertex="1">
+          <mxGeometry height="1060" width="1920" x="-150" y="-40" as="geometry" />
         </mxCell>
-
-        <!-- Title -->
-        <mxCell id="title" value="Prospect-Assist-AI — Current (MVP) Architecture" style="text;html=1;fontSize=22;fontStyle=1;align=left;" vertex="1" parent="1">
-          <mxGeometry x="40" y="20" width="700" height="30" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-2" parent="1" style="text;html=1;fontSize=22;fontStyle=1;align=left;fontFamily=Helvetica;" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Prospect-Assist-AI — Current (MVP) Architecture&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="700" x="-70" as="geometry" />
         </mxCell>
-
-        <!-- Browser -->
-        <mxCell id="browser" value="Browser&#10;(Loan Officer / Demo Viewer)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="700" y="120" width="220" height="60" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;" value="Browser&#xa;(Loan Officer / Demo Viewer)" vertex="1">
+          <mxGeometry height="60" width="220" x="700" y="120" as="geometry" />
         </mxCell>
-
-        <!-- Vercel container -->
-        <mxCell id="vercelBox" value="Vercel — Next.js 15 (apps/web)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="80" y="220" width="520" height="330" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;fontStyle=1;fillColor=#bac8d3;fontSize=13;strokeColor=#23445d;fontFamily=Helvetica;" value="&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Vercel -Next.js 15 (apps/web)" vertex="1">
+          <mxGeometry height="330" width="520" x="80" y="220" as="geometry" />
         </mxCell>
-        <mxCell id="vHome" value="Home / health-check page (/)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="110" y="260" width="220" height="50" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;" value="Home / health-check page (/)" vertex="1">
+          <mxGeometry height="50" width="220" x="110" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="vDashboard" value="/dashboard&#10;(KPI tiles + charts)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="350" y="260" width="220" height="50" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;" value="/dashboard&#xa;(KPI tiles + charts)" vertex="1">
+          <mxGeometry height="50" width="220" x="350" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="vLeads" value="/leads&#10;(sortable, filterable table)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="110" y="330" width="220" height="50" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;" value="/leads&#xa;(sortable, filterable table)" vertex="1">
+          <mxGeometry height="50" width="220" x="110" y="330" as="geometry" />
         </mxCell>
-        <mxCell id="vDetail" value="/leads/[externalRef]&#10;(income, FOIR, why-this-score)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="350" y="330" width="220" height="50" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;" value="/leads/[externalRef]&#xa;(income, FOIR, why-this-score)" vertex="1">
+          <mxGeometry height="50" width="220" x="350" y="330" as="geometry" />
         </mxCell>
-        <mxCell id="vModal" value="LinkAccountModal&#10;(client component)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="110" y="400" width="220" height="50" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;" value="LinkAccountModal&#xa;(client component)" vertex="1">
+          <mxGeometry height="50" width="220" x="110" y="400" as="geometry" />
         </mxCell>
-        <mxCell id="vApiClient" value="lib/api-client.ts&#10;(server-side fetch)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="350" y="400" width="220" height="50" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;" value="lib/api-client.ts&#xa;(server-side fetch)" vertex="1">
+          <mxGeometry height="50" width="220" x="350" y="400" as="geometry" />
         </mxCell>
-        <mxCell id="vTokens" value="Design tokens (globals.css)&#10;dataviz palette, light/dark" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;" vertex="1" parent="1">
-          <mxGeometry x="110" y="470" width="460" height="50" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fontFamily=Helvetica;" value="Design tokens (globals.css)&#xa;dataviz palette, light/dark" vertex="1">
+          <mxGeometry height="50" width="460" x="110" y="470" as="geometry" />
         </mxCell>
-
-        <!-- Render container -->
-        <mxCell id="renderBox" value="Render — FastAPI in Docker (services/scoring-service)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="680" y="220" width="760" height="600" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;fontStyle=1;fillColor=#647687;strokeColor=#314354;fontSize=13;fontColor=#ffffff;fontFamily=Helvetica;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;Render — FastAPI in Docker (services/scoring-service)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="610" width="760" x="680" y="210" as="geometry" />
         </mxCell>
-        <mxCell id="rRoutes" value="API routes&#10;pipeline.py / leads.py / consents.py" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="710" y="260" width="700" height="50" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;" value="API routes&#xa;pipeline.py / leads.py / consents.py" vertex="1">
+          <mxGeometry height="50" width="700" x="710" y="249" as="geometry" />
         </mxCell>
-        <mxCell id="rCategorize" value="categorization&#10;(keyword engine + recurring detector)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="710" y="330" width="220" height="55" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;" value="categorization&#xa;(keyword engine + recurring detector)" vertex="1">
+          <mxGeometry height="55" width="220" x="710" y="330" as="geometry" />
         </mxCell>
-        <mxCell id="rIncomeCap" value="income_engine / capacity_engine /&#10;discipline_engine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="960" y="330" width="220" height="55" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;" value="income_engine / capacity_engine /&#xa;discipline_engine" vertex="1">
+          <mxGeometry height="55" width="220" x="960" y="330" as="geometry" />
         </mxCell>
-        <mxCell id="rScoring" value="scoring_engine&#10;(intent, composite, tiering, explain)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="1210" y="330" width="200" height="55" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;" value="scoring_engine&#xa;(intent, composite, tiering, explain)" vertex="1">
+          <mxGeometry height="55" width="200" x="1210" y="330" as="geometry" />
         </mxCell>
-        <mxCell id="rUnderwriting" value="underwriting/report_builder.py" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="710" y="410" width="220" height="50" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;" value="underwriting/report_builder.py" vertex="1">
+          <mxGeometry height="50" width="220" x="710" y="420" as="geometry" />
         </mxCell>
-        <mxCell id="rAudit" value="core/audit.py&#10;structured JSON logs (stdout)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="960" y="410" width="220" height="50" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;" value="core/audit.py&#xa;structured JSON logs (stdout)" vertex="1">
+          <mxGeometry height="50" width="220" x="960" y="420" as="geometry" />
         </mxCell>
-        <mxCell id="rIngestion" value="ingestion/&#10;SyntheticFileIngestionSource" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="1210" y="410" width="200" height="50" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;" value="ingestion/&#xa;SyntheticFileIngestionSource" vertex="1">
+          <mxGeometry height="50" width="200" x="1210" y="420" as="geometry" />
         </mxCell>
-        <mxCell id="rAAMock" value="integrations/account_aggregator&#10;MockAAClient (in-memory consents)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="710" y="480" width="330" height="55" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;" value="integrations/account_aggregator&#xa;MockAAClient (in-memory consents)" vertex="1">
+          <mxGeometry height="55" width="330" x="710" y="511" as="geometry" />
         </mxCell>
-        <mxCell id="rCoreBankMock" value="integrations/core_banking&#10;MockCoreBankingClient (fabricated KYC)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="1060" y="480" width="330" height="55" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;" value="integrations/core_banking&#xa;MockCoreBankingClient (fabricated KYC)" vertex="1">
+          <mxGeometry height="55" width="330" x="1060" y="511" as="geometry" />
         </mxCell>
-        <mxCell id="rSeedData" value="Baked-in seed data&#10;/app/packages/synthetic-data-generator/data — 210 synthetic customers, generated at Docker BUILD time" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="710" y="560" width="680" height="60" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;" value="Baked-in seed data&#xa;/app/packages/synthetic-data-generator/data — 210 synthetic customers, generated at Docker BUILD time" vertex="1">
+          <mxGeometry height="60" width="680" x="710" y="612" as="geometry" />
         </mxCell>
-        <mxCell id="rEnv" value="Env vars: CORS_ALLOW_ORIGINS, SYNTHETIC_DATA_DIR&#10;(DATABASE_URL / SUPABASE_* defined but unused)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;" vertex="1" parent="1">
-          <mxGeometry x="710" y="640" width="680" height="50" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;" value="Env vars: CORS_ALLOW_ORIGINS, SYNTHETIC_DATA_DIR&#xa;(DATABASE_URL / SUPABASE_* defined but unused)" vertex="1">
+          <mxGeometry height="50" width="680" x="710" y="689" as="geometry" />
         </mxCell>
-
-        <!-- synthetic-data-generator package -->
-        <mxCell id="genPkg" value="packages/synthetic-data-generator&#10;(standalone CLI, own venv + CI job)&#10;7 archetype configs -&gt; customers/accounts/statements/events JSON" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="80" y="650" width="350" height="90" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-24" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a0522d;strokeColor=#6D1F00;fontColor=#ffffff;fontFamily=Helvetica;" value="packages/synthetic-data-generator&#xa;(standalone CLI, own venv + CI job)&#xa;7 archetype configs -&amp;gt; customers/accounts/statements/events JSON" vertex="1">
+          <mxGeometry height="90" width="350" x="90" y="680" as="geometry" />
         </mxCell>
-
-        <!-- GitHub Actions CI -->
-        <mxCell id="ci" value="GitHub Actions CI&#10;web / scoring-service / synthetic-data-generator / e2e-smoke jobs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
-          <mxGeometry x="80" y="760" width="350" height="70" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6d0de;strokeColor=#996185;gradientColor=#d5739d;fontFamily=Helvetica;" value="GitHub Actions CI&#xa;web / scoring-service / synthetic-data-generator / e2e-smoke jobs" vertex="1">
+          <mxGeometry height="70" width="350" x="50" y="920" as="geometry" />
         </mxCell>
-
-        <!-- tests/e2e -->
-        <mxCell id="e2e" value="tests/e2e&#10;Cross-package smoke test (CI gate):&#10;asserts archetype -&gt; tier expectations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
-          <mxGeometry x="470" y="760" width="380" height="70" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;fontFamily=Helvetica;" value="tests/e2e&#xa;Cross-package smoke test (CI gate):&#xa;asserts archetype -&amp;gt; tier expectations" vertex="1">
+          <mxGeometry height="70" width="380" x="280" y="830" as="geometry" />
         </mxCell>
-
-        <!-- Supabase (not connected) -->
-        <mxCell id="supabase" value="Supabase Postgres&#10;Migrations authored (customers, customer_pii,&#10;consents, audit_log + RLS policies) —&#10;NOT connected, unused by the running app" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;" vertex="1" parent="1">
-          <mxGeometry x="1460" y="260" width="220" height="120" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-27" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e51400;strokeColor=#B20000;dashed=1;fontColor=#ffffff;fontFamily=Helvetica;" value="Supabase Postgres&#xa;Migrations authored (customers, customer_pii,&#xa;consents, audit_log + RLS policies) —&#xa;NOT connected, unused by the running app" vertex="1">
+          <mxGeometry height="120" width="220" x="1500" y="310" as="geometry" />
         </mxCell>
-
-        <!-- Edges -->
-        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="browser" target="vDashboard">
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-28" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-6">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="browser" target="vLeads">
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-29" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e3" value="server-side fetch&#10;SCORING_SERVICE_URL" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="vApiClient" target="rRoutes">
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-30" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#AA0000;entryX=0.541;entryY=1.03;entryDx=0;entryDy=0;entryPerimeter=0;labelBackgroundColor=none;fillColor=#e51400;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-13" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;server-side&amp;nbsp;&lt;/font&gt;&lt;/b&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;fetch SCORING_&lt;/font&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;b&gt;SERVICE_&lt;/b&gt;&lt;/span&gt;&lt;b style=&quot;color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;URL&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.7823" y="-25" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-31" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#b85450;labelBackgroundColor=none;fontColor=#000000;entryX=0.441;entryY=1.043;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-13" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;&lt;b&gt;client-side fetch&lt;br&gt;NEXT_PUBLIC_&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;&lt;b&gt;SCORING_SERVICE_&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;URL&amp;nbsp;&lt;/font&gt;&lt;span style=&quot;font-size: 9px; background-color: transparent;&quot;&gt;(CORS)&lt;/span&gt;&lt;/b&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.2176" y="28" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="328" y="408" as="sourcePoint" />
+            <mxPoint x="1058" y="282.0000000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-32" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.114;exitY=1.003;exitDx=0;exitDy=0;exitPerimeter=0;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="790" y="340" />
+              <mxPoint x="790" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-33" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-15">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e4" value="client-side fetch&#10;NEXT_PUBLIC_SCORING_SERVICE_URL (CORS)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#b85450;" edge="1" parent="1" source="vModal" target="rRoutes">
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-34" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-16">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="rRoutes" target="rCategorize">
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-35" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.339;exitY=1.003;exitDx=0;exitDy=0;exitPerimeter=0;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="947" y="390" />
+              <mxPoint x="820" y="390" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-36" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-19">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1235" y="390" />
+              <mxPoint x="1310" y="390" />
+            </Array>
+            <mxPoint x="1200" y="300" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-37" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-22">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1360" y="500" />
+              <mxPoint x="1420" y="500" />
+              <mxPoint x="1420" y="642" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-38" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-20">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="875" y="300" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-39" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-21">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1190" y="460" />
+              <mxPoint x="1190" y="460" />
+            </Array>
+            <mxPoint x="1190" y="300" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-40" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-18" value="audit events">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="491" />
+              <mxPoint x="1070" y="491" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-41" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#d79b00;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-22" value="COPY + RUN cli.py at image build time">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="rCategorize" target="rIncomeCap">
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-42" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#9673a6;entryX=0.25;entryY=1;entryDx=0;entryDy=0;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-4" value="deploy hook">
+          <mxGeometry relative="1" x="0.3379" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="225" y="810" />
+              <mxPoint x="40" y="810" />
+              <mxPoint x="40" y="590" />
+              <mxPoint x="210" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-43" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#9673a6;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-12" value="deploy hook">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="rIncomeCap" target="rScoring">
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-44" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#9673a6;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-24" value="drives as subprocess">
+          <mxGeometry relative="1" x="-0.0435" y="-5" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-45" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#9673a6;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-12" value="drives as subprocess">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="rRoutes" target="rUnderwriting">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="sL0lUI2irbzGWKbJlAI7-46" edge="1" parent="1" source="sL0lUI2irbzGWKbJlAI7-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#666666;fontFamily=Helvetica;" target="sL0lUI2irbzGWKbJlAI7-27" value="not wired (Phase 2)">
+          <mxGeometry relative="1" x="-0.2381" y="-20" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="rRoutes" target="rIngestion">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="rIngestion" target="rSeedData">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="rRoutes" target="rAAMock">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="rRoutes" target="rCoreBankMock">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e13" value="audit events" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="rAAMock" target="rAudit">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e14" value="COPY + RUN cli.py at image build time" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#d79b00;" edge="1" parent="1" source="genPkg" target="rSeedData">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e15" value="deploy hook" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#9673a6;" edge="1" parent="1" source="ci" target="vercelBox">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e16" value="deploy hook" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#9673a6;" edge="1" parent="1" source="ci" target="renderBox">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e17" value="drives as subprocess" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#9673a6;" edge="1" parent="1" source="e2e" target="genPkg">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e18" value="drives as subprocess" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#9673a6;" edge="1" parent="1" source="e2e" target="renderBox">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e19" value="not wired (Phase 2)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#666666;" edge="1" parent="1" source="renderBox" target="supabase">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
       </root>
     </mxGraphModel>
   </diagram>
