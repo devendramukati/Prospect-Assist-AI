@@ -4,8 +4,8 @@ Behavioural-analytics lead qualification and repayment-capacity assessment for r
 
 ## Monorepo layout
 
-- `apps/web` — Next.js 14 frontend (deployed to Vercel)
-- `services/scoring-service` — FastAPI backend: ingestion, categorization, income/capacity engine, scoring engine (deployed to Render as a Docker container)
+- `apps/web` — Next.js 15 frontend: dashboard, lead list/detail pages, and the Account Aggregator linking UI (deployed to Vercel)
+- `services/scoring-service` — FastAPI backend: ingestion, categorization, income/capacity/discipline engines, scoring engine, mock core-banking/Account Aggregator integrations, audit logging (deployed to Render as a Docker container)
 - `packages/synthetic-data-generator` — standalone CLI that generates synthetic customer/transaction archetypes for the MVP (no real bank data used)
 - `infra` — Supabase migrations, local `docker-compose.yml`
 - `render.yaml` — Render Blueprint for the scoring service (must stay at repo root)
@@ -13,6 +13,15 @@ Behavioural-analytics lead qualification and repayment-capacity assessment for r
 - `docs` — `aws-migration-map.md`, `compliance.md`, `demo-script.md`
 
 ## Local development
+
+**Synthetic data** (do this first — the dashboard/leads pages have nothing to show without it)
+
+```bash
+cd packages/synthetic-data-generator
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements-dev.txt
+python cli.py --per-archetype 30   # writes ./data, read by the backend below
+```
 
 **Backend**
 
@@ -40,7 +49,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Visit `http://localhost:3000` — it renders both the frontend status and a live health check against the scoring service at `http://localhost:8000/health`.
+Visit `http://localhost:3000/dashboard` for the KPI/tier dashboard, or `/leads` for the scored lead list (each links to a detail page with the full score explanation and the "link another bank account" Account Aggregator flow). The home page (`/`) is just a frontend/backend health check.
 
 ## Deployment (MVP stage)
 
@@ -50,7 +59,7 @@ Visit `http://localhost:3000` — it renders both the frontend status and a live
 
 ## Testing
 
-- `services/scoring-service` and `packages/synthetic-data-generator` each have their own `pytest` suite (see each package's README/CI job).
+- `services/scoring-service` and `packages/synthetic-data-generator` each have their own `pytest` suite (run `pytest` from within the package after `pip install -r requirements-dev.txt`; see `.github/workflows/ci.yml` for the exact CI invocation, and `packages/synthetic-data-generator/README.md` for that package's details).
 - `tests/e2e` is a cross-package CI gate: it runs the real generator CLI and the real FastAPI service as subprocesses and asserts each archetype lands in its expected tier end-to-end. Run it with a Python environment that has both packages' dependencies installed:
   ```bash
   pip install -r tests/e2e/requirements-dev.txt
