@@ -3,7 +3,7 @@ services:
     name: prospect-assist-scoring-service
     runtime: docker
     dockerfilePath: ./services/scoring-service/Dockerfile
-    dockerContext: ./services/scoring-service
+    dockerContext: .
     plan: free
     envVars:
       - key: CORS_ALLOW_ORIGINS

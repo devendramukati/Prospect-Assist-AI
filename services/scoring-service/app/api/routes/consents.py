@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
+from app.core.audit import record_audit_event
 from app.core.config import settings
 from app.ingestion.synthetic_source import SyntheticFileIngestionSource
 from app.integrations.account_aggregator.base import AAClient
@@ -53,6 +54,12 @@ def request_consent(
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
+    record_audit_event(
+        entity_type="consent",
+        entity_id=consent.id,
+        action="requested",
+        metadata={"external_ref": external_ref, "fip_id": body.fip_id, "purpose": body.purpose},
+    )
     return consent.model_dump()
 
 
@@ -62,6 +69,8 @@ def approve_consent(consent_id: str, aa_client: AAClient = Depends(get_aa_client
         consent = aa_client.approve_consent(consent_id)
     except KeyError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    record_audit_event(entity_type="consent", entity_id=consent.id, action="approved")
     return consent.model_dump()
 
 
@@ -71,6 +80,8 @@ def deny_consent(consent_id: str, aa_client: AAClient = Depends(get_aa_client)) 
         consent = aa_client.deny_consent(consent_id)
     except KeyError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    record_audit_event(entity_type="consent", entity_id=consent.id, action="denied")
     return consent.model_dump()
 
 
@@ -83,4 +94,10 @@ def fetch_consent_data(consent_id: str, aa_client: AAClient = Depends(get_aa_cli
     except ValueError as exc:
         raise HTTPException(status_code=409, detail=str(exc)) from exc
 
+    record_audit_event(
+        entity_type="consent",
+        entity_id=consent_id,
+        action="fetched",
+        metadata={"linked_account_id": account.id, "transaction_count": len(statement.transactions)},
+    )
     return {"account": account.model_dump(), "statement": statement.model_dump()}

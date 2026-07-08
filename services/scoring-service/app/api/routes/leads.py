@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 
 from app.api.routes.pipeline import _load_and_categorize_flat, build_capacity_assessment
+from app.core.audit import record_audit_event
 from app.core.config import settings
 from app.ingestion.synthetic_source import SyntheticFileIngestionSource
 from app.integrations.account_aggregator.base import AAClient
@@ -87,4 +88,11 @@ def get_underwriting_report(
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
-    return build_underwriting_report(result["customer"], result["assessment"], result["score"])
+    report = build_underwriting_report(result["customer"], result["assessment"], result["score"])
+    record_audit_event(
+        entity_type="underwriting_report",
+        entity_id=external_ref,
+        action="generated",
+        metadata={"tier": report["lead_tier"], "composite_score": report["composite_score"]},
+    )
+    return report

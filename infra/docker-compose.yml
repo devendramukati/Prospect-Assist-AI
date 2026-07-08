@@ -12,7 +12,12 @@ services:
 
   scoring-service:
     build:
-      context: ../services/scoring-service
+      # Context is the repo root (not this service's own directory) so the
+      # image can bake in a seeded dataset from the sibling
+      # synthetic-data-generator package at build time — see
+      # services/scoring-service/Dockerfile.
+      context: ../
+      dockerfile: services/scoring-service/Dockerfile
     ports:
       - "8000:8000"
     environment:

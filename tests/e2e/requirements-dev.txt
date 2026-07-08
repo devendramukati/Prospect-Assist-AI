@@ -1,0 +1,3 @@
+-r ../../services/scoring-service/requirements.txt
+-r ../../packages/synthetic-data-generator/requirements.txt
+pytest==8.3.3

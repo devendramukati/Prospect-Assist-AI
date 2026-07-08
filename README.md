@@ -9,6 +9,8 @@ Behavioural-analytics lead qualification and repayment-capacity assessment for r
 - `packages/synthetic-data-generator` — standalone CLI that generates synthetic customer/transaction archetypes for the MVP (no real bank data used)
 - `infra` — Supabase migrations, local `docker-compose.yml`
 - `render.yaml` — Render Blueprint for the scoring service (must stay at repo root)
+- `tests/e2e` — cross-package smoke test: runs the real generator CLI + the real scoring service and asserts each archetype lands in its expected lead tier
+- `docs` — `aws-migration-map.md`, `compliance.md`, `demo-script.md`
 
 ## Local development
 
@@ -43,8 +45,17 @@ Visit `http://localhost:3000` — it renders both the frontend status and a live
 ## Deployment (MVP stage)
 
 - **Frontend**: Vercel project with Root Directory set to `apps/web`.
-- **Backend**: Render Blueprint (`render.yaml` at repo root) builds `services/scoring-service/Dockerfile`.
-- **Database/storage**: Supabase project; apply migrations in `infra/supabase/migrations`.
+- **Backend**: Render Blueprint (`render.yaml` at repo root) builds `services/scoring-service/Dockerfile` with the **repo root** as build context — the image bakes in a seeded dataset (210 synthetic customers, `--per-archetype 30`) from `packages/synthetic-data-generator` at build time, so the deployed service has data immediately with no manual seed step. Rebuilding regenerates a fresh (but deterministic) dataset; nothing baked in is ever real bank data.
+- **Database/storage**: Supabase project; apply migrations in `infra/supabase/migrations` (includes RLS policies — see `docs/compliance.md` for their current status).
+
+## Testing
+
+- `services/scoring-service` and `packages/synthetic-data-generator` each have their own `pytest` suite (see each package's README/CI job).
+- `tests/e2e` is a cross-package CI gate: it runs the real generator CLI and the real FastAPI service as subprocesses and asserts each archetype lands in its expected tier end-to-end. Run it with a Python environment that has both packages' dependencies installed:
+  ```bash
+  pip install -r tests/e2e/requirements-dev.txt
+  pytest tests/e2e
+  ```
 
 ## Stage 2 (AWS migration)
 
