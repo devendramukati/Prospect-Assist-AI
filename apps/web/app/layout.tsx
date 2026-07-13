@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+
+import { AppHeader } from "@/components/AppHeader";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-[var(--viz-page-plane)] text-[var(--viz-text-primary)]">{children}</body>
+      <body className="min-h-screen bg-[var(--viz-page-plane)] text-[var(--viz-text-primary)]">
+        <AppHeader />
+        {children}
+      </body>
     </html>
   );
 }

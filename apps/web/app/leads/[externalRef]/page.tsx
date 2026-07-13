@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Meter } from "@/components/Meter";
@@ -38,7 +39,10 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ ext
 
   return (
     <main className="mx-auto max-w-3xl p-8">
-      <div className="flex items-center justify-between">
+      <Link href="/leads" className="text-sm text-[var(--viz-text-secondary)] underline">
+        &larr; Back to leads
+      </Link>
+      <div className="mt-4 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold">{customer.kyc?.full_name ?? customer.external_ref}</h1>
           <p className="text-sm text-[var(--viz-text-secondary)]">

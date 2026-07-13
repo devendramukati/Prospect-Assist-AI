@@ -45,7 +45,7 @@ export default async function DashboardPage() {
   if (!data) {
     return (
       <main className="mx-auto max-w-5xl p-8">
-        <h1 className="text-2xl font-semibold">Dashboard</h1>
+        <h1 className="text-2xl font-semibold">Relationship Manager Dashboard</h1>
         <p className="mt-2 text-[var(--viz-status-critical)]">
           Could not reach the scoring service. Is it running and has synthetic data been generated?
         </p>
@@ -56,7 +56,12 @@ export default async function DashboardPage() {
   return (
     <main className="mx-auto max-w-5xl p-8">
       <div className="flex items-baseline justify-between">
-        <h1 className="text-2xl font-semibold">Dashboard</h1>
+        <div>
+          <h1 className="text-2xl font-semibold">Relationship Manager Dashboard</h1>
+          <p className="mt-1 text-sm text-[var(--viz-text-secondary)]">
+            Portfolio overview across every scored prospect this period.
+          </p>
+        </div>
         <Link href="/leads" className="text-sm underline text-[var(--viz-text-secondary)]">
           View full lead list &rarr;
         </Link>

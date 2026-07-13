@@ -66,9 +66,7 @@ Shows the full pipeline: transaction data → ingestion & categorization → emp
 
 ## Slide 6 — Wireframes/Mock diagrams (optional)
 
-**Recommendation: skip formal wireframes.** The prototype went straight to a working UI (Next.js dashboard, lead list, lead detail, Account Aggregator modal) rather than a separate wireframe stage — use the actual product screenshots from Slide 10 instead; they're more convincing than a mockup for a working prototype submission.
-
-If you'd still like wireframe-style images, tell me and I'll capture fresh screenshots of the running app (see Slide 10 — same action covers both slides).
+**Skipped by design.** The prototype went straight to a working UI (Next.js dashboard, lead list, lead detail, Account Aggregator modal) rather than a separate wireframe stage — the real product screenshots on Slide 10 are used instead; they're more convincing than a mockup for a working prototype submission.
 
 ---
 
@@ -106,7 +104,15 @@ Optionally pair it with `docs/diagrams/architecture-future.drawio` (AWS stage-2 
 
 ## Slide 10 — Snapshots of the prototype
 
-**Action needed**: I can generate fresh screenshots right now (dashboard, leads list, a lead detail page showing the discipline-gate example, the window-shopper intent-gate example, and the Account Aggregator linking flow) — this is the same live-browser verification I ran during development. Say the word and I'll regenerate synthetic data, start both services, and capture them.
+Real screenshots of the running prototype (Next.js frontend + FastAPI backend, both running locally against a freshly generated 210-customer synthetic dataset), captured under `docs/screenshots/`:
+
+1. **`01-dashboard.png`** — Relationship Manager Dashboard: KPI tiles (210 total leads, 179 Serious+Quality, avg composite score 0.76, 46 discipline red flags), the leads-by-tier bar chart, the baseline-vs-targeted conversion comparison (28.6% vs 33.5%), and the discipline-red-flag-rate-by-tier chart.
+2. **`02-leads-list.png`** — Prospect Leads table: sortable, tier-filterable, ranked by composite score, with the persistent navy/gold navigation header (active "Leads" tab highlighted).
+3. **`03-lead-detail-window-shopper.png`** — `window_shopper-000`: strong capacity (0.83) and reasonable discipline (0.70) but intent only 0.10 — capped at **Interested** by the intent gate, with the gate reason spelled out under "Why this score."
+4. **`04-lead-detail-discipline-flag.png`** — `salaried_spend_day1-000`: strong intent (0.85) and capacity (0.89), but 70% of top credits spent within 2 days plus 1 bounced payment — capped at **Quality** (below Serious) by the discipline gate. This is the exact "spends the whole salary on day 1" pattern flagged as a delinquency-risk concern.
+5. **`05-lead-detail-income-confidence-band.png`** — `business_owner_upi_heavy-000`: income shown as `Turnover × industry margin` with an explicit confidence band (₹75,894–₹1,32,814/mo), not a single guessed number.
+6. **`06-aa-consent-pending.png`** — Account Aggregator modal mid-flow: consent requested from HDFC Bank, showing the data-range, purpose, and expiry, waiting on simulated customer approval.
+7. **`07-aa-linked-completed.png`** — Account Aggregator modal after approval + fetch: second account linked, capacity assessment now includes it (`Accounts (2)` on the lead detail page).
 
 ---
 
@@ -115,8 +121,8 @@ Optionally pair it with `docs/diagrams/architecture-future.drawio` (AWS stage-2 
 All figures below are from actual runs during development on **synthetic data** — labeled honestly as prototype-stage validation, not a production load test (no formal load/concurrency testing has been done).
 
 - **108 automated tests passing** (95 backend + 9 synthetic-data-generator + 4 cross-package end-to-end), re-verified right before writing this deck. The end-to-end suite runs the real data generator and the real API together and asserts every one of the 7 customer archetypes lands in its expected lead tier.
-- **From an actual 210-customer run** (30 per archetype, freshly generated and scored to write this slide): 91 Serious, 88 Quality, 31 Interested, 0 Not Qualified.
-- **Discipline red-flag rate by tier**: 0 of the 91 Serious-tier leads carried a discipline red flag (46 flags total across the other 210) — *by construction* of the scoring gate, not by chance.
+- **From an actual 210-customer run** (30 per archetype, freshly generated and scored to write this slide, and re-verified again when capturing the Slide 10 screenshots): 90 Serious, 89 Quality, 31 Interested, 0 Not Qualified.
+- **Discipline red-flag rate by tier**: 0 of the 90 Serious-tier leads carried a discipline red flag (46 flags total across the other 210) — *by construction* of the scoring gate, not by chance.
 - **Conversion-proxy comparison**: targeting only Serious+Quality leads showed a "reached disbursed" rate of 33.5%, versus 28.6% if every lead were pursued equally. This number moves with the random seed and archetype mix used to generate the demo data, so treat it as a representative example from synthetic data, not a guaranteed real-world figure.
 - **API responsiveness (local, unoptimized, anecdotal)**: individual endpoint calls completed in roughly 70–150ms per customer during smoke testing — not a formal load-test benchmark, just a development-time observation.
 

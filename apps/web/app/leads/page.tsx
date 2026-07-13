@@ -7,9 +7,11 @@ export default async function LeadsPage() {
 
   return (
     <main className="mx-auto max-w-4xl p-8">
-      <h1 className="text-2xl font-semibold">Leads</h1>
+      <h1 className="text-2xl font-semibold">Prospect Leads</h1>
       <p className="mt-2 text-[var(--viz-text-secondary)]">
-        {data ? `${data.count} scored lead${data.count === 1 ? "" : "s"}.` : "Could not reach the scoring service."}
+        {data
+          ? `${data.count} scored lead${data.count === 1 ? "" : "s"}, ranked by composite score.`
+          : "Could not reach the scoring service."}
       </p>
 
       {data ? <div className="mt-6"><LeadsTable leads={data.leads} /></div> : null}
