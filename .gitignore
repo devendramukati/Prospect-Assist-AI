@@ -27,6 +27,7 @@ packages/synthetic-data-generator/data/
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Editor
 .vscode/
