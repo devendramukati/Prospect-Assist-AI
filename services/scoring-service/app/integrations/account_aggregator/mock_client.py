@@ -7,6 +7,7 @@ from app.integrations.account_aggregator.consent_models import ConsentRequest, C
 from app.models.domain import BankAccount, Statement, Transaction
 
 MOCK_FIPS = [
+    FIPInfo(fip_id="IDBI-FIP", name="IDBI Bank"),
     FIPInfo(fip_id="HDFC-FIP", name="HDFC Bank"),
     FIPInfo(fip_id="ICICI-FIP", name="ICICI Bank"),
     FIPInfo(fip_id="SBI-FIP", name="State Bank of India"),
