@@ -10,7 +10,7 @@ Behavioural-analytics lead qualification and repayment-capacity assessment for r
 - `infra` — Supabase migrations, local `docker-compose.yml`
 - `render.yaml` — Render Blueprint for the scoring service (must stay at repo root)
 - `tests/e2e` — cross-package smoke test: runs the real generator CLI + the real scoring service and asserts each archetype lands in its expected lead tier
-- `docs` — `aws-migration-map.md`, `compliance.md`, `demo-script.md`
+- `docs` — `deployment.md`, `aws-migration-map.md`, `compliance.md`, `demo-script.md`
 
 ## Local development
 
@@ -55,7 +55,9 @@ Visit `http://localhost:3000/dashboard` for the KPI/tier dashboard, or `/leads` 
 
 - **Frontend**: Vercel project with Root Directory set to `apps/web`.
 - **Backend**: Render Blueprint (`render.yaml` at repo root) builds `services/scoring-service/Dockerfile` with the **repo root** as build context — the image bakes in a seeded dataset (210 synthetic customers, `--per-archetype 30`) from `packages/synthetic-data-generator` at build time, so the deployed service has data immediately with no manual seed step. Rebuilding regenerates a fresh (but deterministic) dataset; nothing baked in is ever real bank data.
-- **Database/storage**: Supabase project; apply migrations in `infra/supabase/migrations` (includes RLS policies — see `docs/compliance.md` for their current status).
+- **Database/storage**: not provisioned for the free MVP — Supabase is skipped entirely since nothing in the code opens a connection with it yet.
+
+See [`docs/deployment.md`](docs/deployment.md) for the full click-by-click walkthrough.
 
 ## Testing
 

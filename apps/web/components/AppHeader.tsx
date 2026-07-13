@@ -1,5 +1,6 @@
 "use client";
 
+import { Landmark } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -19,21 +20,31 @@ export function AppHeader() {
   return (
     <header style={{ backgroundColor: NAVY }}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        <Link href="/dashboard" className="flex items-center gap-2.5">
+        <div className="flex items-center gap-4">
+          <Link href="/dashboard" className="flex items-center gap-3">
+            <span
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-white"
+              style={{ backgroundColor: GOLD }}
+              aria-hidden
+            >
+              <Landmark className="h-5 w-5" strokeWidth={2.25} />
+            </span>
+            <div className="leading-tight">
+              <p className="text-sm font-semibold text-white">Prospect-Assist-AI</p>
+              <p className="text-[11px]" style={{ color: "#B8C4D9" }}>
+                Retail Lending Intelligence
+              </p>
+            </div>
+          </Link>
+
           <span
-            className="flex h-8 w-8 items-center justify-center rounded-md text-sm font-bold text-white"
-            style={{ backgroundColor: GOLD }}
-            aria-hidden
+            className="hidden items-center gap-2 whitespace-nowrap rounded-full border px-3.5 py-1.5 text-[11px] font-medium leading-none sm:flex"
+            style={{ borderColor: "rgba(200,149,44,0.5)", color: GOLD }}
           >
-            PA
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: GOLD }} />
+            IDBI Innovate 2026 &middot; Track 02
           </span>
-          <div className="leading-tight">
-            <p className="text-sm font-semibold text-white">Prospect-Assist-AI</p>
-            <p className="text-[11px]" style={{ color: "#B8C4D9" }}>
-              Retail Lending Intelligence
-            </p>
-          </div>
-        </Link>
+        </div>
 
         <nav className="flex items-center gap-1">
           {NAV_ITEMS.map((item) => {

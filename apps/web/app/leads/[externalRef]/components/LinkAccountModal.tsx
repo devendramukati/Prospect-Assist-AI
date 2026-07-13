@@ -131,7 +131,7 @@ export function LinkAccountModal({ externalRef }: { externalRef: string }) {
                     className="mt-1 w-full rounded border border-[var(--viz-border)] bg-transparent p-2 text-sm text-[var(--viz-text-primary)]"
                   >
                     {fips.map((fip) => (
-                      <option key={fip.fip_id} value={fip.fip_id}>
+                      <option key={fip.fip_id} value={fip.fip_id} style={{ color: "#111827", backgroundColor: "#FFFFFF" }}>
                         {fip.name}
                       </option>
                     ))}
